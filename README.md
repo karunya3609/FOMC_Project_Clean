@@ -19,13 +19,6 @@ Computer vision pipeline for extracting FOMC Summary of Economic Projections (SE
 
 - Structured CSV files containing extracted projections
 
-## Current Results
-
-| SEP Release | Accuracy |
-|---|---|
-| March 2026 | ~100% |
-| September 2025 | ~97% |
-
 ## Tech Stack
 
 - Python
