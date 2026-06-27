@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+pdfs/
+notebooks/page.png
+notebooks/detected_dots_debug.png
+notebooks/sep_pdfs/
+notebooks/projections.csv
+.DS_Store
