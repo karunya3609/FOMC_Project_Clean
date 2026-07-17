@@ -31,21 +31,11 @@ left   = 200
 right  = 2200
 
 Y_AXIS_MAX = {
-    (2021, 3): 4.0, (2021, 6): 4.0, (2021, 9): 4.0, (2021, 12): 4.0,
-    (2022, 3): 4.0, (2022, 6): 5.0, (2022, 9): 6.0, (2022, 12): 6.0,
-    (2023, 3): 6.0, (2023, 6): 7.0, (2023, 9): 7.0, (2023, 12): 7.0,
-    (2024, 3): 7.0, (2024, 6): 7.0, (2024, 9): 7.0, (2024, 12): 7.0,
-    (2025, 3): 6.0, (2025, 6): 6.0, (2025, 9): 6.0, (2025, 12): 6.0,
-    (2026, 3): 6.0, (2026, 6): 6.0, (2026, 9): 6.0, (2026, 12): 6.0,
+    (2020, 6): 4.0, (2020, 9): 4.0, (2020, 12): 4.0,
 }
 
 ALL_DATES = [
-    date(2021, 3, 17), date(2021, 6, 16), date(2021, 9, 22), date(2021, 12, 15),
-    date(2022, 3, 16), date(2022, 6, 15), date(2022, 9, 21), date(2022, 12, 14),
-    date(2023, 3, 22), date(2023, 6, 14), date(2023, 9, 20), date(2023, 12, 13),
-    date(2024, 3, 20), date(2024, 6, 12), date(2024, 9, 18), date(2024, 12, 18),
-    date(2025, 3, 19), date(2025, 6, 18), date(2025, 9, 17), date(2025, 12, 10),
-    date(2026, 3, 18), date(2026, 6, 17),
+    date(2020, 6, 10), date(2020, 9, 16), date(2020, 12, 16)
 ]
 
 os.makedirs(SAVE_DIR, exist_ok=True)
@@ -124,9 +114,13 @@ def process_sep(sep_date, pdf_path):
     n_clusters    = 5 if sep_date.month in (9, 12) else 4
     starting_year = sep_date.year
 
-    # Render page 4 (index 3)
+    # Render page
     doc  = fitz.open(pdf_path)
-    page = doc[3]
+    
+    # Page index depends on year
+    page_index = 3 if sep_date.year >= 2021 else 2
+    page = doc[page_index]
+
     pix  = page.get_pixmap(matrix=fitz.Matrix(4, 4))
     pix.save("page.png")
     doc.close()
@@ -162,6 +156,13 @@ def process_sep(sep_date, pdf_path):
     mask_clean = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
     mask_clean = cv2.morphologyEx(mask_clean, cv2.MORPH_CLOSE, kernel)
     centers = detect_dots(mask_clean, sep_date)
+
+    dot_img = crop.copy()
+    for cx, cy in centers:
+        cv2.circle(dot_img, (int(cx), int(cy)), 5, (0, 255, 0), 2)
+    cv2.imwrite("detected_dots_debug.png", dot_img)
+
+    cv2.imwrite("mask_debug.png", mask_clean)
 
     if not centers:
         print(f"  [WARN] No dots detected for {sep_date}")
