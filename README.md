@@ -11,7 +11,7 @@ This project automatically fetches FOMC SEP PDF documents and extracts individua
 - **Output**: Single CSV file with 10,000+ data points
 
 ### Important Note on Historical Data
-SEP documents prior to June 2012 do not use dot plots. Instead, they present participant projections as numerical tables. This pipeline is specifically designed for dot plot data (2012+). Extracting pre-2012 table-based data would require separate logic and is outside the current scope.
+SEP documents prior to 2012 do not use dot plots. Instead, they present participant projections as numerical tables. This pipeline is specifically designed for dot plot data (2012+). Extracting pre-2012 table-based data would require separate logic and is outside the current scope.
 
 ## Project Structure
 ## Features
