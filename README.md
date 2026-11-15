@@ -36,10 +36,3 @@ Running `run_all_seps.py` twice without deleting the CSV duplicates every row.
 - `notebooks/run_all_seps.py` - runs both
 - `notebooks/extract_sep.py` - extract one meeting by date
 
-## Known limitations
-- SEPs before 2012 use a table of numbers, not a dot plot, so they are not covered.
-- Dots are found by image analysis. Touching dots can merge, so some meetings have
-  fewer dots than participants. Most meetings have uneven dot counts across years
-  (usually off by one). December 2016 is the worst case (31 rows).
-- Six values in 2015 are impossible (8.25, 8.25, 8.5 and three at -0.125).
-- Check the PDF by eye before relying on any single meeting.
