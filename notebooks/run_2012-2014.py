@@ -3,7 +3,7 @@ Robust pipeline for automatically fetching and extracting FOMC SEP dot plot data
 Handles format differences across years (2012-present) automatically.
 
 Usage:
-cd /Users/knimm/Documents/FOMC_Project_Clean/notebooks
+cd notebooks
 python3 run_all_seps.py
 """
 
