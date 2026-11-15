@@ -54,8 +54,6 @@ This runs both 2012-2014 and 2015+ pipelines, outputting to `outputs/projections
 | 2013 | 0.50 | 2012-06-20 |
 | ... | ... | ... |
 
-## Dependencies
-cat > /Users/knimm/Documents/FOMC_Project_Clean/.gitignore << 'EOF'
 # Python
 __pycache__/
 *.py[cod]
